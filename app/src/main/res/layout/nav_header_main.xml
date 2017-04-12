@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="180dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/civNavHeaderMain"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/portrait"
+        app:civ_border_width="1dp"
+        app:civ_border_color="#ff00ff"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"/>
+
+        <TextView
+            android:id="@+id/tvUsernameNavHeaderMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Lily"
+            android:textSize="14sp"
+            android:gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/tvMailNavHeaderMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="JeccsiLily@gmail.com"
+            android:textSize="14sp"
+            android:gravity="center_horizontal"/>
+</LinearLayout>
