@@ -7,6 +7,7 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView nvMain;
     private FloatingActionButton fabMain;
     private RecyclerView rvMain;
+    private SwipeRefreshLayout srlMain;
 
     private List<ShuihuCard> shuihuCardList = new ArrayList<ShuihuCard>();
     private ShuihuCardAdapter adapter;
@@ -216,6 +218,14 @@ public class MainActivity extends AppCompatActivity {
         rvMain.setLayoutManager(gridLayoutManager);
         adapter = new ShuihuCardAdapter(shuihuCardList);
         rvMain.setAdapter(adapter);
+        srlMain = (SwipeRefreshLayout) findViewById(R.id.srlMain);
+        srlMain.setColorSchemeResources(R.color.colorPrimary);
+        srlMain.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshCards();
+            }
+        });
     }
 
     private void initShuihuCards() {
@@ -223,6 +233,27 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 108; i++) {
             shuihuCardList.add(new ShuihuCard(shuihuCardNames[i], shuihuCardIds[i]));
         }
+    }
+
+    private void refreshCards(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                    initShuihuCards();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyDataSetChanged();
+                        srlMain.setRefreshing(false);
+                    }
+                });
+            }
+        }).start();
     }
 
     @Override

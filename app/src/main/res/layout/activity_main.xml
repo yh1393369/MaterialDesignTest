@@ -25,13 +25,19 @@
                 app:layout_scrollFlags="scroll|enterAlways|snap"/>
         </android.support.design.widget.AppBarLayout>
 
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvMain"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/srlMain"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="?attr/colorPrimary"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvMain"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/colorPrimary"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabMain"

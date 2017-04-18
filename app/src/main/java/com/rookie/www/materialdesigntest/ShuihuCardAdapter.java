@@ -1,6 +1,7 @@
 package com.rookie.www.materialdesigntest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -64,7 +65,10 @@ public class ShuihuCardAdapter extends RecyclerView.Adapter<ShuihuCardAdapter.Vi
         holder.ivShuihucard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "图片：" + shuihuCard.getCardName(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, CardActivity.class);
+                intent.putExtra(CardActivity.CARD_NAME, shuihuCard.getCardName());
+                intent.putExtra(CardActivity.IMAGE_ID, shuihuCard.getImageId());
+                context.startActivity(intent);
             }
         });
         holder.tvShuihucard.setOnClickListener(new View.OnClickListener() {
